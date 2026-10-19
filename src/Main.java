@@ -49,6 +49,29 @@ public class Main {
                     }
                     break;
 
+                case "EXPIRE":
+                    if (parts.length < 3) {
+                        System.out.println("Error: EXPIRE command requires a key and a time in seconds.");
+                    }
+                    else{
+                        try {
+                            int seconds = Integer.parseInt(parts[2]);
+                            System.out.println("(integer) " + store.expire(parts[1], seconds));
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: Time must be an integer.");
+                        }
+                    }
+                    break;
+
+                case "TTL":
+                    if (parts.length < 2) {
+                        System.out.println("Error: You must enter a key value for the TTL command.");
+                    }
+                    else{
+                        System.out.println("(integer) " + store.ttl(parts[1]));
+                    }
+                    break;
+
                 default:
                     System.out.println("Error: Unknown command.");
                     break;
